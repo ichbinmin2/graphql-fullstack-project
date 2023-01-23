@@ -1,18 +1,26 @@
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
 
+interface Film {
+  id : number,
+  title: string,
+  subtitle: string
+}
+
+type FilmQueryResult = { films: Film[]}
+
 const FILMS_QUERY = gql`
   query ExampleQuery {
     films {
       id
       title
-      subTitle
+      subtitle
     }
   }
 `;
 
 export default function FilmList(): JSX.Element {
-  const { data, loading, error} = useQuery(FILMS_QUERY);
+  const { data, loading, error} = useQuery<FilmQueryResult>(FILMS_QUERY);
 
   if(loading) return <p> ... loading </p>;
   if(error) return <p> {error.message}</p>;
