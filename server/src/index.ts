@@ -1,8 +1,8 @@
-import "reflect-metadata";
-import express from "express";
-import { ApolloServer, gql } from "apollo-server-express";
-import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
-import http from "http";
+import 'reflect-metadata';
+import express from 'express';
+import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import http from 'http';
 
 async function main() {
   const app = express();
@@ -15,7 +15,7 @@ async function main() {
     `,
     resolvers: {
       Query: {
-        hello: () => "Hello World",
+        hello: () => 'Hello World',
       },
     },
     plugins: [ApolloServerPluginLandingPageLocalDefault()],
@@ -27,7 +27,7 @@ async function main() {
   const httpServer = http.createServer(app);
 
   httpServer.listen(process.env.PORT || 4000, () => {
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV !== 'production') {
       console.log(`
         server started on => http://localhost:4000
         graphql playground => http://localhost:4000/graphql
