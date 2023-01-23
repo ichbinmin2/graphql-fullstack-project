@@ -1,4 +1,5 @@
 import * as React from "react"
+import { ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client"
 import {
   ChakraProvider,
   Box,
@@ -6,7 +7,14 @@ import {
   theme,
 } from "@chakra-ui/react"
 
-export const App = () => (
+
+const apolloClient = new ApolloClient({
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache()
+})
+
+export const App: React.FC = () => (
+  <ApolloProvider client={apolloClient} >
   <ChakraProvider theme={theme}>
     <Box textAlign="center" fontSize="xl">
           <Text>
@@ -14,4 +22,5 @@ export const App = () => (
           </Text>
     </Box>
   </ChakraProvider>
+  </ApolloProvider>
 )
