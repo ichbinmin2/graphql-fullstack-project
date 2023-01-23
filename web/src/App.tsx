@@ -6,6 +6,7 @@ import {
   Text,
   theme,
 } from "@chakra-ui/react"
+import FilmList from "./components/film/FilmList"
 
 
 const apolloClient = new ApolloClient({
@@ -16,11 +17,7 @@ const apolloClient = new ApolloClient({
 export const App: React.FC = () => (
   <ApolloProvider client={apolloClient} >
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-          <Text>
-            Ghibli GraphQL
-          </Text>
-    </Box>
+   <FilmList />
   </ChakraProvider>
   </ApolloProvider>
 )
