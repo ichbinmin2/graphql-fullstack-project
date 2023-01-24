@@ -16,22 +16,26 @@ export default function FilmList(): JSX.Element {
   if (error) return <p>{error.message}</p>;
 
   return (
-  <SimpleGrid column={[2, null, 3]} spacing={[2, null, 10]}>
+    <SimpleGrid columns={[2, null, 3]} spacing={[2, null, 10]}>
     {loading && new Array(6).fill(0).map((x) => <Skeleton key={x} height="400px" />)}
-    {!loading && data && data.films.films.map((film, i) => (
-      <Box key={film.id}>
-      {data.films.cursor && i === data.films.films.length - LIMIT / 2 && (
-        <Waypoint onEnter={() => {
-          fetchMore({
-            variables: {
-              limit: LIMIT, 
-              cursor: data.films.cursor
-            },
-          });
-        }} />
-      )}
-     <FilmCard film={film} /> 
-    </Box>
-    ))}
+    {!loading &&
+      data &&
+      data.films.films.map((film, i) => (
+        <Box key={film.id}>
+          {data.films.cursor && i === data.films.films.length - LIMIT / 2 && (
+            <Waypoint
+              onEnter={() => {
+                fetchMore({
+                  variables: {
+                    limit: LIMIT,
+                    cursor: data.films.cursor,
+                  },
+                });
+              }}
+            />
+          )}
+          <FilmCard film={film} />
+        </Box>
+      ))}
   </SimpleGrid>)
 }
