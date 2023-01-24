@@ -2,11 +2,15 @@ import React from 'react';
 import { useFilmsQuery } from '../../generated/graphql';
 import { Box, SimpleGrid, Skeleton} from "@chakra-ui/react"
 import FilmCard from './FilmCard';
-// 
-
 
 export default function FilmList(): JSX.Element {
-  const { data, loading, error } = useFilmsQuery();
+  const LIMIT = 6;
+  const { data, loading, error } = useFilmsQuery({
+    variables: {
+      limit: LIMIT,
+      cursor: 1,
+    }
+  });
 
   if (error) return <p>{error.message}</p>;
 
