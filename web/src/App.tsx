@@ -2,13 +2,11 @@ import * as React from "react"
 import { ApolloProvider} from "@apollo/client"
 import {
   ChakraProvider,
-  Box,
-  Text,
   theme,
 } from "@chakra-ui/react"
+import { BrowserRouter, Route } from "react-router-dom"
 import { createApolloClient } from "./apollo/createApolloClient"
 import FilmList from "./components/film/FilmList"
-
 
 const apolloClient = createApolloClient();
 
